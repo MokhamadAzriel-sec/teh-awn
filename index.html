@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-src https://www.google.com https://maps.google.com;">
+    <title>Es Teh Awn | Segarnya Kesegaran Sejati</title>
+    <meta name="description" content="Nikmati berbagai varian es teh segar dan minuman spesial di Es Teh Awn. Lokasi di Arjawinangun dengan cabang BILLBoy. Pesan via WhatsApp untuk pengalaman cita rasa teh nusantara yang autentik.">
+    <meta name="keywords" content="es teh awn, es teh, teh segar, minuman Arjawinangun, tea shop Arjawinangun, xyuzu theasu, strawberry xyuzu, teh susu, taro cokelat, green tea cokelat, cokelat red velvet, pesan teh online, kedai teh Arjawinangun, BILLBoy, Azriel">
+    <link rel="icon" href="aset/01.jpeg" type="image/jpeg">
+    <!-- Bootstrap 5 CDN + Icons + Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Lightbox CDN untuk gallery popup -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FEF7E8;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --tea-brown: #A55B3A;
+            --tea-gold: #C47A44;
+            --tea-light: #E3C9A0;
+            --tea-cream: #FFF2DF;
+            --tea-dark: #6B3E26;
+            --tea-warm: #D9A56C;
+            --shadow-warm: 0 10px 25px -5px rgba(101, 67, 33, 0.1);
+        }
+
+        .navbar {
+            background-color: rgba(255, 248, 235, 0.96);
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            padding: 0.8rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            color: var(--tea-brown) !important;
+        }
+
+        .navbar-brand i {
+            color: var(--tea-gold);
+            font-size: 1.9rem;
+            margin-right: 5px;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: #4A3729 !important;
+            margin: 0 0.5rem;
+            transition: 0.2s;
+            border-radius: 40px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--tea-brown) !important;
+            background-color: #F5E6D3;
+        }
+
+        .nav-link-wa {
+            color: #25D366 !important;
+        }
+
+        .nav-link-wa:hover {
+            background-color: rgba(37, 211, 102, 0.1);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #F7EBD9 0%, #FFF7ED 70%);
+            padding: 5rem 0 4rem 0;
+            border-bottom-left-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #5C3A23;
+            line-height: 1.2;
+        }
+
+        .hero-title span {
+            color: var(--tea-gold);
+            background: linear-gradient(120deg, #B46A3A, #D9944A);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: #6B4E3A;
+            max-width: 500px;
+            margin-top: 1rem;
+        }
+
+        .btn-cta {
+            background-color: var(--tea-brown);
+            border: none;
+            padding: 12px 32px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 40px;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            box-shadow: 0 8px 20px rgba(165, 91, 58, 0.3);
+        }
+
+        .btn-cta:hover {
+            background-color: #8B4A2E;
+            transform: translateY(-3px);
+        }
+
+        .hero-img {
+            animation: float 3s ease-in-out infinite;
+            max-width: 100%;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .section-title {
+            font-weight: 800;
+            font-size: 2.2rem;
+            color: #4A2C1A;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--tea-gold);
+            border-radius: 4px;
+        }
+
+        .card-menu {
+            border: none;
+            border-radius: 2rem;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            background: white;
+            box-shadow: 0 15px 35px -12px rgba(101, 67, 33, 0.1);
+        }
+
+        .card-menu:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 40px -15px rgba(165, 91, 58, 0.25);
+        }
+
+        .card-img-top {
+            object-fit: 50% 30%;
+            height: 250px;
+            background: #F5E6D3;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .card-menu:hover .card-img-top {
+            transform: scale(1.02);
+        }
+
+        .price {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--tea-brown);
+        }
+
+        .btn-wa-order {
+            background-color: #25D366;
+            border: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 50px;
+            color: white;
+            transition: 0.2s;
+        }
+        .btn-wa-order:hover {
+            background-color: #128C7E;
+            transform: scale(1.02);
+        }
+
+        .contact-section {
+            background: linear-gradient(120deg, #FFF5E8 0%, #FFFFFF 100%);
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-warm);
+            border: 1px solid #F0E2D0;
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            color: var(--tea-brown);
+            background: #F5E6D3;
+            width: 55px;
+            height: 55px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #4A3729;
+        }
+
+        .team-card {
+            border: none;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 10px 25px -5px rgba(101, 67, 33, 0.08);
+            border: 1px solid #F0E2D0;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(165, 91, 58, 0.2);
+        }
+        .team-img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 1.5rem auto 1rem;
+            border: 4px solid var(--tea-light);
+            transition: 0.3s;
+        }
+        .team-card:hover .team-img {
+            border-color: var(--tea-gold);
+            transform: scale(1.02);
+        }
+        .branch-item {
+            border-left: 3px solid var(--tea-gold);
+            transition: 0.2s;
+            background: #FFFBF5;
+            cursor: pointer;
+        }
+        .branch-item:hover {
+            background-color: #FFF5E8;
+            transform: translateX(5px);
+        }
+
+        /* Map Card Styles */
+        .map-card {
+            border: none;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            height: 100%;
+        }
+        .map-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(165, 91, 58, 0.15);
+        }
+        .map-container {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            transition: transform 0.3s;
+        }
+        .map-card:hover .map-container iframe {
+            transform: scale(1.02);
+        }
+        .branch-map-title {
+            color: var(--tea-brown);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .btn-direction {
+            background-color: var(--tea-light);
+            color: var(--tea-brown);
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .btn-direction:hover {
+            background-color: var(--tea-gold);
+            color: white;
+        }
+
+        /* Gallery Styles */
+        .gallery-section {
+            background: linear-gradient(145deg, #FFF9F0, #FEF7E8);
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px rgba(165, 91, 58, 0.25);
+        }
+        .gallery-img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.05);
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px 15px 12px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+        .badge-moment {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--tea-brown);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        footer {
+            background-color: #2F241B;
+            color: #D4C5B5;
+        }
+
+        .footer-link {
+            color: #B8A28C;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .footer-link:hover {
+            color: var(--tea-gold);
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.7s forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.4rem; }
+            .hero { text-align: center; padding: 3rem 0; }
+            .section-title:after {
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+            }
+            .section-title { text-align: center; display: block; }
+            .gallery-img { height: 200px; }
+            .map-container { height: 180px; }
+            .card-img-top { height: 200px; }
+            .card-title { font-size: 1.1rem; }
+            .price { font-size: 1.4rem; }
+            .card-text { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#home">
+    
+    <img src="aset/01.jpeg" alt="Es Teh Awn"
+        style="
+        width:45px;
+        height:45px;
+        object-fit:cover;
+        border-radius:50%;
+        margin-right:10px;
+        border:2px solid #0d6efd;
+        box-shadow:0 4px 10px rgba(0,0,0,0.3);
+        ">
+    
+    <span style="
+        font-family: 'Satisfy', cursive;
+        font-size: 25px;
+        background: linear-gradient(45deg, #0d6efd, #20c997);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 1px;
+    ">
+        Teh AWN
+    </span>
+
+</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="#home">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="#gallery">Galeri</a></li>
+                <li class="nav-item"><a class="nav-link" href="#maps">Lokasi</a></li>
+                <li class="nav-item"><a class="nav-link" href="#tentang">Tentang</a></li>
+                <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-wa" href="https://wa.me/6281311213244" target="_blank"><i class="bi bi-whatsapp"></i> Pesan</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 fade-up">
+                <h1 class="hero-title">Nikmati <span>Kehangatan Teh</span> <br>Dalam Setiap Teguk</h1>
+                <p class="hero-sub">Racikan teh pilihan dengan sentuhan rempah dan madu asli. Dingin menyegarkan, hangat menenangkan. Sensasi teh yang autentik!</p>
+                <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20minuman%20segar%21" target="_blank" class="btn btn-cta btn-lg mt-3 text-white">
+                    <i class="bi bi-cart-check"></i> Pesan Sekarang
+                </a>
+            </div>
+            <div class="col-lg-6 text-center fade-up delay-1">
+                <img src="aset/02.png" alt="Es Teh Segar" class="hero-img img-fluid" style="border-radius: 40px; max-width: 50%; box-shadow: 0 25px 40px -12px rgba(101, 67, 33, 0.2);">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MENU PRODUK -->
+<section id="menu" class="py-5">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <h2 class="section-title">🍂 Menu Spesial Teh</h2>
+            <p class="text-secondary mt-3">Racikan terbaik dari daun teh pilihan Nusantara</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-1">
+                <div class="card card-menu h-100">
+                    <img src="produk/Xyuzu_Theasu.jpeg" class="card-img-top" alt="Es Teh Original">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Xyuzu Theasu</h4>
+                            <span class="price">Rp 8.000</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Teh hitam pilihan dengan aroma khas, manis alami dari gula aren.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Xyuzu%20Theasu*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-2">
+                <div class="card card-menu h-100">
+                    <img src="produk/Xyuzu_Strawbery.jpeg" class="card-img-top" alt="Teh Lemon Madu">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Strawberry Xyuzu</h4>
+                            <span class="price">Rp 12.000</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Perpaduan strawberry segar, madu asli, dan teh wangi.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Strawberry%20Xyuzu*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-2">
+                <div class="card card-menu h-100">
+                    <img src="produk/Teh_Susu.jpeg" class="card-img-top" alt="Teh Susu">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Teh Susu</h4>
+                            <span class="price">Rp 11.000</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Teh hitam pilihan dengan sentuhan susu kental manis yang creamy.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Teh%20Susu*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-2">
+                <div class="card card-menu h-100">
+                    <img src="produk/Taro_cokelat.jpeg" class="card-img-top" alt="Taro Cokelat">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Taro Cokelat</h4>
+                            <span class="price">Rp 14.000</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Rasa unik taro dicampur cokelat kental untuk sensasi manis mendalam.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Taro%20Cokelat*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-2">
+                <div class="card card-menu h-100">
+                    <img src="produk/Strawbery_squash_mango.jpeg" class="card-img-top" alt="Strawberry Squash Mango">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Strawberry Squash Mango</h4>
+                            <span class="price">Rp 15.000</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Perpaduan buah strawberry & mango segar dengan soda ringan.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Strawberry%20Squash%20Mango*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-2">
+                <div class="card card-menu h-100">
+                    <img src="produk/Greentea_Cokelat.jpeg" class="card-img-top" alt="Green Tea Cokelat">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Green Tea Cokelat</h4>
+                            <span class="price">Rp 16.000</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Green tea harum dengan rasa cokelat manis yang lembut.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Green%20Tea%20Cokelat*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-2">
+                <div class="card card-menu h-100">
+                    <img src="produk/Cokelat_Red_Velvet.jpeg" class="card-img-top" alt="Cokelat Red Velvet">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Cokelat Red Velvet</h4>
+                            <span class="price">Rp 16.500</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Sentuhan cokelat lembut dengan aroma red velvet khas.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Cokelat%20Red%20Velvet*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-2">
+                <div class="card card-menu h-100">
+                    <img src="produk/Cokelat_Nutela.jpeg" class="card-img-top" alt="Cokelat Nutela">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Cokelat Nutela</h4>
+                            <span class="price">Rp 17.000</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Perpaduan cokelat premium dengan lapisan krim nutella nikmat.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Cokelat%20Nutela*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-2">
+                <div class="card card-menu h-100">
+                    <img src="produk/Cokelat_Brown_sugar.jpeg" class="card-img-top" alt="Cokelat Brown Sugar">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Cokelat Brown Sugar</h4>
+                            <span class="price">Rp 15.500</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Cokelat klasik dengan gula aren karamel gurih yang meleleh.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Cokelat%20Brown%20Sugar*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-2">
+                <div class="card card-menu h-100">
+                    <img src="produk/Capucino_Caramel.jpeg" class="card-img-top" alt="Cappuccino Caramel">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Cappuccino Caramel</h4>
+                            <span class="price">Rp 18.000</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Kopi cappuccino bercampur susu dan saus caramel untuk rasa manis hangat.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Cappuccino%20Caramel*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-2">
+                <div class="card card-menu h-100">
+                    <img src="produk/Avocado_Cheese.jpeg" class="card-img-top" alt="Avocado Cheese">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Avocado Cheese</h4>
+                            <span class="price">Rp 19.000</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Kombinasi alpukat segar, keju krim, dan teh dingin yang lembut.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Avocado%20Cheese*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 fade-up delay-3">
+                <div class="card card-menu h-100">
+                    <img src="produk/Avocado_Cees_Cokelat.jpeg" class="card-img-top" alt="Avocado Cokelat">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="card-title fw-bold">Avocado Cheese Cokelat</h4>
+                            <span class="price">Rp 19.500</span>
+                        </div>
+                        <p class="card-text text-secondary mt-2">Teh dingin alpukat dengan keju krim dan lapisan cokelat pekat.</p>
+                        <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20*Avocado%20Cheese%20Cokelat*%20(1%20gelas)" target="_blank" class="btn btn-wa-order w-100 mt-2">
+                            <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALERI FOTO - SUASANA KEDAI & MOMEN -->
+<section id="gallery" class="py-5 gallery-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">📸 Momen di Kedai Es Teh Awn</h2>
+            <p class="text-secondary mt-3">Suasana hangat, tawa, dan kebersamaan bersama secangkir teh</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4 fade-up delay-1">
+                <a href="https://placehold.co/1200x900/E3C9A0/8B5A3C?text=🏪+Suasana+Kedai+Ramai" data-lightbox="gallery" data-title="Suasana kedai yang hangat dan ramai pengunjung">
+                    <div class="gallery-item">
+                        <div class="badge-moment"><i class="bi bi-people-fill"></i> Ramai</div>
+                        <img src="https://placehold.co/800x600/E3C9A0/8B5A3C?text=🏪+Suasana+Kedai+Ramai" class="gallery-img" alt="Suasana Kedai">
+                        <div class="gallery-caption"><p>Suasana hangat penuh tawa</p></div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-4 fade-up delay-2">
+                <a href="https://placehold.co/1200x900/D9A56C/FFFFFF?text=👥+Pelanggan+Ngobrol+Santai" data-lightbox="gallery" data-title="Momen kebersamaan pelanggan sambil menikmati teh">
+                    <div class="gallery-item">
+                        <div class="badge-moment"><i class="bi bi-chat-dots-fill"></i> Kebersamaan</div>
+                        <img src="https://placehold.co/800x600/D9A56C/FFFFFF?text=👥+Pelanggan+Ngobrol+Santai" class="gallery-img" alt="Pelanggan Ngobrol">
+                        <div class="gallery-caption"><p>Ngobrol santai bersama teman</p></div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-4 fade-up delay-3">
+                <a href="https://placehold.co/1200x900/C47A44/FFF2DF?text=👨‍🍳+Barista+Menghidangkan" data-lightbox="gallery" data-title="Barista handal menyajikan teh dengan penuh ketelitian">
+                    <div class="gallery-item">
+                        <div class="badge-moment"><i class="bi bi-cup-straw"></i> Penuh Cinta</div>
+                        <img src="https://placehold.co/800x600/C47A44/FFF2DF?text=👨‍🍳+Barista+Menghidangkan" class="gallery-img" alt="Barista">
+                        <div class="gallery-caption"><p>Barista menyajikan dengan penuh cinta</p></div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-4 fade-up delay-1">
+                <a href="https://placehold.co/1200x900/F5E6D3/A55B3A?text=🌿+Area+Outdoor+Asri" data-lightbox="gallery" data-title="Area outdoor yang asri dengan banyak tanaman hijau">
+                    <div class="gallery-item">
+                        <div class="badge-moment"><i class="bi bi-tree-fill"></i> Outdoor</div>
+                        <img src="https://placehold.co/800x600/F5E6D3/A55B3A?text=🌿+Area+Outdoor+Asri" class="gallery-img" alt="Outdoor">
+                        <div class="gallery-caption"><p>Area outdoor sejuk dengan tanaman</p></div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-4 fade-up delay-2">
+                <a href="https://placehold.co/1200x900/D9A56C/FFF5E8?text=👨‍👩‍👧+Momen+Keluarga" data-lightbox="gallery" data-title="Momen kebersamaan keluarga menikmati akhir pekan">
+                    <div class="gallery-item">
+                        <div class="badge-moment"><i class="bi bi-emoji-smile-fill"></i> Keluarga</div>
+                        <img src="https://placehold.co/800x600/D9A56C/FFF5E8?text=👨‍👩‍👧+Momen+Keluarga" class="gallery-img" alt="Keluarga">
+                        <div class="gallery-caption"><p>Quality time bersama keluarga</p></div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-4 fade-up delay-3">
+                <a href="https://placehold.co/1200x900/E3C9A0/6B4E3A?text=🎸+Live+Music+Akustik" data-lightbox="gallery" data-title="Live music akustik menemani santapan teh">
+                    <div class="gallery-item">
+                        <div class="badge-moment"><i class="bi bi-music-note-beamed"></i> Live Music</div>
+                        <img src="https://placehold.co/800x600/E3C9A0/6B4E3A?text=🎸+Live+Music+Akustik" class="gallery-img" alt="Live Music">
+                        <div class="gallery-caption"><p>Hiburan live music setiap akhir pekan</p></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="text-center mt-4"><p class="text-muted"><i class="bi bi-camera-fill"></i> Klik foto untuk melihat lebih detail</p></div>
+    </div>
+</section>
+
+<!-- MAPS LOKASI CABANG -->
+<section id="maps" class="py-5" style="background-color: #FFFBF5;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">📍 Temukan Kami</h2>
+            <p class="text-secondary mt-3">Kunjungi cabang terdekat dan nikmati segarnya Es Teh Awn</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <!-- Cabang Pusat - Desa Jungjang -->
+            <div class="col-md-6 col-lg-4 fade-up delay-1">
+                <div class="map-card">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4076.487356930132!2d108.4106257!3d-6.6512698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6edd007854585f%3A0xdda3a86d2330c9cc!2sEs%20TEH%20AWN%20%22BILLBoy%22!5e1!3m2!1sid!2sde!4v1774535019327!5m2!1sid!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="p-3">
+                        <h5 class="branch-map-title"><i class="bi bi-geo-alt-fill text-tea-gold"></i> Cabang Pusat - BILLBoy</h5>
+                        <p class="small text-muted mb-2">Jl. Kihajar Dewantara, Jungjang, Kec. Arjawinangun, Kabupaten Cirebon, Jawa Barat 45162</p>
+                        <a href="https://maps.app.goo.gl/yWP7aiRZTv7bk7s99?g_st=awb" target="_blank" class="btn-direction"><i class="bi bi-compass"></i> Buka di Google Maps</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Cabang Bandung -->
+            <div class="col-md-6 col-lg-4 fade-up delay-2">
+                <div class="map-card">
+                    <div class="map-container">
+                        <iframe src="https://maps.google.com/maps?q=Jl.%20Ir.%20H.%20Juanda%20No.88%20Dago%20Bandung&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="p-3">
+                        <h5 class="branch-map-title"><i class="bi bi-geo-alt-fill"></i> Cabang Bandung</h5>
+                        <p class="small text-muted mb-2">Jl. Ir. H. Juanda No. 88, Dago, Bandung</p>
+                        <a href="https://maps.google.com/?q=Jl.+Ir.+H.+Juanda+No.88+Dago+Bandung" target="_blank" class="btn-direction"><i class="bi bi-compass"></i> Buka di Google Maps</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION BIODATA PEMILIK, KARYAWAN, CABANG -->
+<section id="tentang" class="py-5" style="background-color: #FFFBF5;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">🌟 Tim & Jaringan Teh Awn</h2>
+            <p class="text-secondary mt-3">Kenali pemilik, kru handal, dan cabang kami yang tersebar</p>
+        </div>
+        <div class="row justify-content-center mb-5 fade-up">
+            <div class="col-lg-5 col-md-8 text-center">
+                <div class="team-card p-4">
+                    <img src="https://placehold.co/300x300/E3C9A0/A55B3A?text=👨‍🍳+Pak+Awn" alt="Foto Pemilik" class="team-img">
+                    <h4 class="fw-bold mt-3 mb-1">Bili Malisi</h4>
+                    <p class="text-muted">Founder & Tea Master</p>
+                    <p class="small px-2">Pendiri Es Teh Awn sejak 2018. Memiliki passion dalam meracik teh berkualitas dengan sentuhan rempah Nusantara.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 g-4 justify-content-center">
+            <div class="col-md-6 col-lg-4 fade-up delay-1">
+                <div class="team-card text-center p-3 h-100">
+                    <img src="https://placehold.co/300x300/F5E6D3/A55B3A?text=👩‍🦰+Sari" alt="Karyawan" class="team-img">
+                    <h5 class="fw-bold mt-2">Sari Dewi Lestari</h5>
+                    <p class="text-muted small">Teh Sommelier</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 fade-up delay-2">
+                <div class="team-card text-center p-3 h-100">
+                    <img src="https://placehold.co/300x300/F5E6D3/C47A44?text=👨‍🍳+Rizki" alt="Karyawan" class="team-img">
+                    <h5 class="fw-bold mt-2">Muhammad Rizki</h5>
+                    <p class="text-muted small">Store Manager</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 fade-up delay-3">
+                <div class="team-card text-center p-3 h-100">
+                    <img src="https://placehold.co/300x300/F5E6D3/D9A56C?text=👩‍🍳+Nina" alt="Karyawan" class="team-img">
+                    <h5 class="fw-bold mt-2">Nina Karlina</h5>
+                    <p class="text-muted small">Creative Marketing</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 g-4">
+            <div class="col-md-6 fade-up delay-2">
+                <div class="contact-section h-100">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <i class="bi bi-shop fs-1" style="color: var(--tea-brown);"></i>
+                        <h4 class="fw-bold m-0">📍 Cabang Kami</h4>
+                    </div>
+                    <div class="branch-item p-3 mb-2 rounded-3" onclick="window.open('https://maps.app.goo.gl/yWP7aiRZTv7bk7s99?g_st=awb', '_blank')">📍 Cabang Pusat - BILLBoy (Cirebon)</div>
+                    <div class="branch-item p-3 mb-2 rounded-3" onclick="window.open('https://maps.google.com/?q=Jl.+Ir.+H.+Juanda+No.88+Dago+Bandung', '_blank')">📍 Cabang Bandung - Dago</div>
+                </div>
+            </div>
+            <div class="col-md-6 fade-up delay-3">
+                <div class="contact-section h-100">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <i class="bi bi-bank fs-1" style="color: var(--tea-brown);"></i>
+                        <h4 class="fw-bold m-0">💰 Pembayaran Transfer</h4>
+                    </div>
+                    <div class="p-3 mb-3 rounded-3" style="background: #FFF5E8;">
+                        <strong>Bank Mandiri</strong><br>137-00-1234567-8<br>a.n. Ahmad Fauzan Awn
+                    </div>
+                    <div class="p-3 mb-3 rounded-3" style="background: #FFF5E8;">
+                        <strong>Bank BCA</strong><br>456 089 7654<br>a.n. Es Teh Awn
+                    </div>
+                    <div class="alert border-0 mt-2" style="background-color: #F5E6D3;">📢 Konfirmasi pembayaran via WhatsApp</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- KONTAK & PEMESANAN -->
+<section id="kontak" class="py-5">
+    <div class="container">
+        <div class="row align-items-stretch g-4">
+            <div class="col-lg-6 fade-up">
+                <div class="contact-section h-100">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="contact-icon"><i class="bi bi-telephone-fill"></i></div>
+                        <h3 class="fw-bold m-0">Hubungi Kami</h3>
+                    </div>
+                    <p class="info-text"><i class="bi bi-whatsapp me-2" style="color:#25D366;"></i> +62 813-1121-3244</p>
+                    <p class="info-text mt-3"><i class="bi bi-geo-alt-fill me-2"></i> Jl. Kihajar Dewantara, Jungjang, Kec. Arjawinangun, Kabupaten Cirebon, Jawa Barat 45162</p>
+                    <p class="info-text mt-3"><i class="bi bi-clock me-2"></i> Setiap Hari • 07:00 - 00:00</p>
+                    <a href="https://wa.me/6281311213244" target="_blank" class="btn rounded-pill px-4 mt-3" style="border: 2px solid var(--tea-brown);">Chat Admin</a>
+                </div>
+            </div>
+            <div class="col-lg-6 fade-up delay-1">
+                <div class="contact-section h-100">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="contact-icon"><i class="bi bi-cart-plus"></i></div>
+                        <h3 class="fw-bold m-0">Pesan Sekarang!</h3>
+                    </div>
+                    <a href="https://wa.me/6281311213244?text=Halo%20Es%20Teh%20Awn%2C%20saya%20mau%20pesan%20minuman%3A%0A-*Es%20Teh%20Original*%20x1%0AAlamat%3A%20..." target="_blank" class="btn btn-success btn-lg w-100 rounded-pill py-3">
+                        <i class="bi bi-whatsapp me-2"></i> Pesan via WhatsApp
+                    </a>
+                    <p class="small text-secondary mt-3 text-center">Klik untuk pesan cepat</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="pt-5 pb-4 mt-5">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-md-5">
+                <h5 class="fw-bold text-white mb-3"><i class="bi bi-cup-straw"></i> Es Teh Awn</h5>
+                <p class="small">Menghadirkan cita rasa teh autentik Nusantara dengan sentuhan modern.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="footer-link"><i class="bi bi-instagram fs-5"></i></a>
+                    <a href="#" class="footer-link"><i class="bi bi-facebook fs-5"></i></a>
+                    <a href="#" class="footer-link"><i class="bi bi-tiktok fs-5"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h6 class="fw-semibold text-white">Menu Populer</h6>
+                <ul class="list-unstyled small">
+                    <li><a href="#menu" class="footer-link">Es Teh Original</a></li>
+                    <li><a href="#menu" class="footer-link">Teh Susu</a></li>
+                    <li><a href="#menu" class="footer-link">Taro Cokelat</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h6 class="fw-semibold text-white">Kontak</h6>
+                <ul class="list-unstyled small">
+                    <li><i class="bi bi-telephone-fill me-1"></i> +62 813-1121-3244</li>
+                    <li><i class="bi bi-envelope me-1"></i> tehawn@gmail.com</li>
+                    <li><i class="bi bi-geo-alt me-1"></i> 2 Cabang di Indonesia</li>
+                </ul>
+            </div>
+        </div>
+        <hr class="mt-4 opacity-25">
+        <div class="text-center small pt-2">&copy; 2025 Es Teh Awn - Cita Rasa Teh Nusantara.</div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+<script>
+    document.querySelectorAll('a.nav-link, a[href^="#"]').forEach(anchor => {
+        if(anchor.getAttribute('href') && anchor.getAttribute('href').startsWith("#") && anchor.getAttribute('href').length > 1){
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                const targetEl = document.querySelector(targetId);
+                if(targetEl){
+                    e.preventDefault();
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        }
+    });
+    window.addEventListener('load', () => {
+        document.querySelectorAll('.fade-up').forEach(el => el.style.opacity = '1');
+    });
+    lightbox.option({ 'resizeDuration': 200, 'wrapAround': true });
+</script>
+</body>
+</html>
